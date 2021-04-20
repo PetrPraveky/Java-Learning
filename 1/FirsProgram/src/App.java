@@ -1,12 +1,16 @@
 // Toto je je první soubor
-import javax.swing.JOptionPane;
-
 public class App {
     public static void main(String[] args) throws Exception {
-        String name = JOptionPane.showInputDialog("Enter your name");
-        JOptionPane.showMessageDialog(null, "Hello "+name);
+        int age = -5;
 
-        int age = Integer.parseInt(JOptionPane.showInputDialog("Enter your age"));
-        JOptionPane.showMessageDialog(null, "You are "+age+" years old!");
+        if(age>=75) {
+            System.out.println("Ok boomer!");
+        }
+        else if(age>=18) {
+            System.out.println("You are an adult!");
+        }
+        else {
+            System.out.println("You are not an adult!");
+        }
     }
 }
