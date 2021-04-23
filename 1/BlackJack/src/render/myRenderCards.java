@@ -19,7 +19,7 @@ public class myRenderCards extends JPanel{
     public myRenderCards() {
         cardDeck = new ImageIcon(cardDeckFile).getImage(); //Přidání textury pro balíček karet
         cardBack = new ImageIcon(cardBackFIle).getImage(); //Přidání textury pro zadní část karty
-        this.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //Vykreslení okna
+        // this.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //Vykreslení okna
     }
     //Funkce pro render
     public void paint(Graphics g) {
