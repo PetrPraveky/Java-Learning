@@ -5,9 +5,21 @@ import javax.swing.*; //Přidání mudlu swing
 //Hlavní třída
 public class myRenderCards extends JPanel{
     Image cardDeck; //Vytvoření obrázku pro balíček karet
+    Image cardBack; //Vytvoření obrázku pro zadní část karty
+    Timer timer; //Vytvoření časovače
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Zjištění velikosti okna
+    final int[] cardDeckOffset = { //Hodnota odsazení od kraje
+        128, //X-ová hodnota
+        96 //Y-ová hodnota
+    }; 
+    String cardDeckFile = "D:/Github/Java-Learning/1/BlackJack/res/.cards/cardStackBig-back1.png"; //Umístění textury balíčku karet
+    String cardBackFIle = "D:/Github/Java-Learning/1/BlackJack/res/.cards/back1.png"; //Umístění textury zadní strany karty
 
+    //Konsturktor
     public myRenderCards() {
-        cardDeck = new ImageIcon("D:/Github/Java-Learning/1/BlackJack/res/.cards/cardStackBig-back1.png").getImage(); //Přidání textury pro balíček karet
+        cardDeck = new ImageIcon(cardDeckFile).getImage(); //Přidání textury pro balíček karet
+        cardBack = new ImageIcon(cardBackFIle).getImage(); //Přidání textury pro zadní část karty
+        timer = new Timer(2000, null); //Přidání delaye k časovačí
         this.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //Vykreslení okna
     }
     //Funkce pro render
@@ -16,8 +28,8 @@ public class myRenderCards extends JPanel{
         //Vykreslení balíčku karet
         g2D.drawImage(
             cardDeck, //Textura
-            0, //X Pozice
-            0, //Y Pozice
+            (int)screenSize.getWidth()-cardDeckOffset[0]-getImageMult(cardDeck.getWidth(null), 2), //X Pozice
+            cardDeckOffset[1], //Y Pozice
             getImageMult(cardDeck.getWidth(null), 2), //Velikost textury po ose X
             getImageMult(cardDeck.getHeight(null), 2), //Velikost textury po ose Y
             null //null
@@ -25,7 +37,7 @@ public class myRenderCards extends JPanel{
     }
     //Funkce pro vypočítání výsledné velikosti textury
     int getImageMult(int baseLenght, int multipl) {
-        int Lenght = baseLenght*multipl; //Vypočítání velikosti
-        return Lenght; //Vrácení hodnoty
+        int lenght = baseLenght*multipl; //Vypočítání velikosti
+        return lenght; //Vrácení hodnoty
     }
 }
