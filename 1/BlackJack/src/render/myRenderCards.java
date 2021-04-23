@@ -2,11 +2,11 @@ package render;
 //Balíček pro render karet
 import java.awt.*; //Přidání modulu awt
 import javax.swing.*; //Přidání mudlu swing
+// import func.*;
 //Hlavní třída
 public class myRenderCards extends JPanel{
     Image cardDeck; //Vytvoření obrázku pro balíček karet
     Image cardBack; //Vytvoření obrázku pro zadní část karty
-    Timer timer; //Vytvoření časovače
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Zjištění velikosti okna
     final int[] cardDeckOffset = { //Hodnota odsazení od kraje
         128, //X-ová hodnota
@@ -19,7 +19,6 @@ public class myRenderCards extends JPanel{
     public myRenderCards() {
         cardDeck = new ImageIcon(cardDeckFile).getImage(); //Přidání textury pro balíček karet
         cardBack = new ImageIcon(cardBackFIle).getImage(); //Přidání textury pro zadní část karty
-        timer = new Timer(2000, null); //Přidání delaye k časovačí
         this.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //Vykreslení okna
     }
     //Funkce pro render
@@ -40,4 +39,6 @@ public class myRenderCards extends JPanel{
         int lenght = baseLenght*multipl; //Vypočítání velikosti
         return lenght; //Vrácení hodnoty
     }
+    //Funkce časovače
+
 }
