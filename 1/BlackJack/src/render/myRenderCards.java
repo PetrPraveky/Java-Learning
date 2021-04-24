@@ -24,7 +24,6 @@ public class myRenderCards extends JPanel implements ActionListener{
     //Konsturktor
     public myRenderCards() {
         this.setLayout(new FlowLayout());
-        this.setBackground(new Color(0x141414)); //Nastavení pozadí
         this.add(ui);
         ui.startButton.addActionListener(this);
         repaint();
