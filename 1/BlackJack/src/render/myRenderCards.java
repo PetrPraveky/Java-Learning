@@ -2,11 +2,14 @@ package render;
 //Balíček pro render karet
 import java.awt.*; //Přidání modulu awt
 import javax.swing.*; //Přidání mudlu swing
+import java.awt.event.*;
 // import func.*;
 //Hlavní třída
 public class myRenderCards extends JPanel{
     Image cardDeck; //Vytvoření obrázku pro balíček karet
     Image cardBack; //Vytvoření obrázku pro zadní část karty
+    myRenderUI ui = new myRenderUI();
+    ActionListener listener = new myRenderUI();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Zjištění velikosti okna
     final int[] cardDeckOffset = { //Hodnota odsazení od kraje
         128, //X-ová hodnota
@@ -17,9 +20,12 @@ public class myRenderCards extends JPanel{
 
     //Konsturktor
     public myRenderCards() {
+        this.setLayout(new FlowLayout());
         cardDeck = new ImageIcon(cardDeckFile).getImage(); //Přidání textury pro balíček karet
         cardBack = new ImageIcon(cardBackFIle).getImage(); //Přidání textury pro zadní část karty
-        // this.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize())); //Vykreslení okna
+        this.add(ui);
+        ui.startButton.addActionListener(listener);
+        repaint();
     }
     //Funkce pro render
     public void paint(Graphics g) {

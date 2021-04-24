@@ -24,6 +24,8 @@ public class myRandomCardDeck {
             "hA", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9", "h10", "hJ", "hQ", "hK",
             "sA", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "sJ", "sQ", "sK"
         };
+        // System.out.println(Arrays.toString(randomizeCards(cardDeck)));
+
     }
 
     String[] randomizeCards(String[] cardDeck) {

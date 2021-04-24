@@ -10,16 +10,14 @@ public class myRender extends JFrame{
     public myRender() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Funkce pro vypnutí okna
         this.setUndecorated(true); //Vypnutí horní lišty
-        // this.setLocationRelativeTo(null);
         this.setBackground(new Color(0x141414)); //Nastavení pozadí
         
-        this.setSize(1280, 720); //Nastanení základní velikosti okna
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH); //Vytvoření fullscreenu
-
         loadPanels(); //Načtení panelů
 
         this.setSize(1280, 720); //Nastanení základní velikosti okna
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); //Vytvoření fullscreenu
+        
+        // this.setLayout(null);
         
         this.setLocation(0, 0); //Nastavení lokace na monitoru na 0x 0y
         this.setVisible(true); //Zapnutí GUI
