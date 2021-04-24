@@ -4,7 +4,7 @@ import java.awt.*; //Přidání modulu awt
 import javax.swing.*; //Přidání mudlu swing
 import java.awt.event.*;
 //Hlavní třída
-public class myRenderUI extends JPanel implements ActionListener{
+public class myRenderUI extends JPanel{
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Zjištění velikosti okna
     JButton startButton;
     
@@ -19,12 +19,5 @@ public class myRenderUI extends JPanel implements ActionListener{
         };
         this.add(startButton);
         this.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Start")) {
-            System.out.println("Clicked");
-        }
     }
 }
