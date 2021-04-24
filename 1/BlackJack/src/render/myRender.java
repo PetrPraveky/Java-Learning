@@ -13,7 +13,8 @@ public class myRender extends JFrame{
         this.setBackground(new Color(0x141414)); //Nastavení pozadí
         
         loadPanels(); //Načtení panelů
-
+        
+        this.pack();
         this.setSize(1280, 720); //Nastanení základní velikosti okna
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); //Vytvoření fullscreenu
         

@@ -23,6 +23,8 @@ public class myRenderUI extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Clicked");
+        if(e.getActionCommand().equals("Start")) {
+            System.out.println("Clicked");
+        }
     }
 }
