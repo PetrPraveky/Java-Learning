@@ -10,6 +10,7 @@ public class myRenderUI extends JPanel{
     
     public myRenderUI() {
         this.setPreferredSize(screenSize);
+        this.setBackground(Color.black);
 
         this.setLayout(null);
         startButton = new JButton("Start") {

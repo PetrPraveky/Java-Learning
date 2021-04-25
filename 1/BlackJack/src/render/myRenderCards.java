@@ -7,7 +7,7 @@ import java.awt.event.*;
 //Hlavní třída
 public class myRenderCards extends JPanel implements ActionListener{
     String cardBackFile = "D:/Github/Java-Learning/1/BlackJack/res/.cards/back1.png"; //Umístění textury zadní strany karty
-    String cardDeckFile = "D:/Github/Java-Learning/1/BlackJack/res/.cards/cardStackBig-back1.png";
+    String cardDeckFile = "D:/Github/Java-Learning/1/BlackJack/res/.cards/cardStackBig-back1.png"; //Umístění textury pro blaíček karet
 
     myRenderUI ui = new myRenderUI();
     
@@ -24,8 +24,11 @@ public class myRenderCards extends JPanel implements ActionListener{
     //Konsturktor
     public myRenderCards() {
         this.setLayout(new FlowLayout());
+
         this.add(ui);
         ui.startButton.addActionListener(this);
+
+        this.setBackground(Color.black);
         repaint();
     }
     //Funkce pro render
@@ -38,7 +41,13 @@ public class myRenderCards extends JPanel implements ActionListener{
             (int)screenSize.getWidth()-cardDeckOffset[0]-getImageMult(cardDeck.getWidth(null), 2), //X Pozice
             cardDeckOffset[1], //Y Pozice
             getImageMult(cardDeck.getWidth(null), 2), //Velikost textury po ose X
-            getImageMult(cardDeck.getHeight(null), 2), //Velikost textury po ose Y
+            getImageMult(cardDeck.getHeight(null), 2) //Velikost textury po ose Y
+        };
+        int[] cardBackPosSize = {
+            (int)screenSize.getWidth()-cardDeckOffset[0]-getImageMult(cardDeck.getWidth(null), 2), //X Pozice
+            cardDeckOffset[1], //Y Pozice
+            getImageMult(cardBack.getWidth(null), 2), //Velikost textury po ose X
+            getImageMult(cardBack.getHeight(null), 2) //Velikost textury po ose Y
         };
 
         super.paint(g);
@@ -52,7 +61,15 @@ public class myRenderCards extends JPanel implements ActionListener{
             cardDeckPosSize[3], //Velikost textury po ose Y
             null //null
             );
-    }
+        g2D.drawImage(
+            cardBack,
+            cardBackPosSize[0], //X Pozice
+            cardBackPosSize[1], //Y Pozice
+            cardBackPosSize[2], //Velikost textury po ose X
+            cardBackPosSize[3], //Velikost textury po ose Y)
+            null
+            );
+    };
     //Funkce pro vypočítání výsledné velikosti textury
     int getImageMult(int baseLenght, int multipl) {
         int lenght = baseLenght*multipl; //Vypočítání velikosti
@@ -62,8 +79,8 @@ public class myRenderCards extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Start")) {
-            System.out.println("Clicked");
-            cardDeckFile = "D:/Github/Java-Learning/1/BlackJack/res/.cards/cardStackSmall-back1.png";
+            System.out.println("Started");
+            // cardDeckFile = "D:/Github/Java-Learning/1/BlackJack/res/.cards/cardStackSmall-back1.png";
             repaint();
         }
     }
