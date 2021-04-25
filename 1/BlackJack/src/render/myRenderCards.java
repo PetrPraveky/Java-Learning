@@ -10,10 +10,8 @@ public class myRenderCards extends JPanel implements ActionListener{
     myRenderUI ui = new myRenderUI();
     myFunctionRenderCard funcRenderCard = new myFunctionRenderCard();
     Image cardDeck; Image cardBack;
-
+    myRenderAnimation renderAnimation = new myRenderAnimation();
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Zjištění velikosti okna
-
-    Timer timer;
 
     //Konsturktor
     public myRenderCards() {
@@ -60,8 +58,7 @@ public class myRenderCards extends JPanel implements ActionListener{
         if(e.getActionCommand().equals("Start")) {
             System.out.println("Started");
             // funcRenderCard.cardDeck = new ImageIcon("D:/Github/Java-Learning/1/BlackJack/res/.cards/cardStackSmall-back1.png").getImage();
-            timer = new Timer(50, this);
+            
         }
     }
-    void myStartCardAnimation() {}
 }
