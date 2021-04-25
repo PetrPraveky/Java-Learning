@@ -27,7 +27,7 @@ public class myFunctionRenderCard {
         cardBackPosSize[2] = getImageMult(cardBack.getWidth(null), 2); //Velikost textury po ose X
         cardBackPosSize[3] = getImageMult(cardBack.getHeight(null), 2); //Velikost textury po ose X
     }
-    public void myFunctionCardReload() {
+    public void myFunctionCardReset() {
         cardDeckPosSize[0] = (int)screenSize.getWidth()-cardDeckOffset[0]-getImageMult(cardDeck.getWidth(null), 2); //X Pozice
         cardDeckPosSize[1] = cardDeckOffset[1]; //Y Pozice
         cardDeckPosSize[2] = getImageMult(cardDeck.getWidth(null), 2); //Velikost textury po ose X
