@@ -70,6 +70,9 @@ public class myRenderCards extends JPanel implements ActionListener{
                         }
                         else if (cardNumber==2||cardNumber==4) {
                             cardMoveTable();
+                        } else {
+                            animationDone=true;
+                            return;
                         }
                     }
                     @Override
@@ -77,8 +80,10 @@ public class myRenderCards extends JPanel implements ActionListener{
                         if (animationDone==false) {
                             cardMoveSum();
                         } else {
-                            timer.stop();
                             animationDone=false;
+                            cardNumber=1;
+                            System.out.println(animationDone);
+                            timer.stop();
                         }
                     }
                 }
@@ -86,8 +91,9 @@ public class myRenderCards extends JPanel implements ActionListener{
             timer.start();
         }
     }
+    //Animace karet
     public void cardMoveTable() {
-        if (funcRenderCard.cardBackPosSize[0]<=(int)screenSize.getWidth()/2-cardBack.getWidth(null)/2) {
+        if (funcRenderCard.cardBackPosSize[0]<=(int)screenSize.getWidth()/2-cardBack.getWidth(null)/2+20) {
             funcRenderCard.cardBackPosSize[0]=(int)screenSize.getWidth()/2-cardBack.getWidth(null)/2;
             funcRenderCard.cardBackPosSize[0]=(int)screenSize.getHeight()/2-cardBack.getHeight(null);
             funcRenderCard.myFunctionCardReset();
@@ -96,7 +102,7 @@ public class myRenderCards extends JPanel implements ActionListener{
             return;
         } else {
             funcRenderCard.cardBackPosSize[0]=funcRenderCard.cardBackPosSize[0]-startingAnimationCardVelX;
-            funcRenderCard.cardBackPosSize[1]=funcRenderCard.cardBackPosSize[1]+startingAnimationCardVelY/2;
+            funcRenderCard.cardBackPosSize[1]=funcRenderCard.cardBackPosSize[1]+startingAnimationCardVelY/4;
             repaint();
         }
     }
