@@ -19,6 +19,7 @@ public class myRenderUI extends JPanel{
             }
         };
         this.add(startButton);
+        this.setOpaque(false);
         this.setVisible(true);
     }
 }

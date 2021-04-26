@@ -1,6 +1,7 @@
 package func;
 import java.awt.*; //Přidání modulu awt
 import javax.swing.*; //Přidání mudlu swing
+// import java.util.*;
 
 public class myFunctionRenderCard {
     public Image cardDeck; public Image cardBack;
@@ -10,7 +11,7 @@ public class myFunctionRenderCard {
         128, //X-ová hodnota
         96 //Y-ová hodnota
     };
-    
+
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Zjištění velikosti okna
     
     public myFunctionRenderCard() {
@@ -26,6 +27,8 @@ public class myFunctionRenderCard {
         cardBackPosSize[1] = cardDeckOffset[1]; //Y Pozice
         cardBackPosSize[2] = getImageMult(cardBack.getWidth(null), 2); //Velikost textury po ose X
         cardBackPosSize[3] = getImageMult(cardBack.getHeight(null), 2); //Velikost textury po ose X
+
+
     }
     public void myFunctionCardReset() {
         cardBackPosSize[0] = (int)screenSize.getWidth()-cardDeckOffset[0]-getImageMult(cardDeck.getWidth(null), 2); //X Pozice

@@ -1,4 +1,4 @@
-import java.awt.*; //Přidání modulu awt
+/*import java.awt.*; //Přidání modulu awt
 import javax.swing.*; //Přidání modulu swing
 import java.awt.event.*;
 
@@ -35,7 +35,7 @@ public class App extends JFrame implements ActionListener {
      * When the "Attack" button is pressed the time will start and the
      * circle will start painting.
      */
-    @Override
+    /*@Override
     public void actionPerformed(ActionEvent e) {
       AttackFX attackfx = new AttackFX();
   
@@ -70,7 +70,7 @@ public class App extends JFrame implements ActionListener {
        * I unfortunately had to hard code a value that the circle should stop at
        * but I am sure you can find a way around this.
        */
-      @Override
+      /*@Override
       public void actionPerformed(ActionEvent e) {
   
           if (xCoor > 250) {
@@ -82,4 +82,4 @@ public class App extends JFrame implements ActionListener {
           repaint();
       }
     }
-  }
+  } */

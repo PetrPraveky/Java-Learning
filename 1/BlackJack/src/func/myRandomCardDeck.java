@@ -4,38 +4,21 @@ import java.util.*; //Vložení modulu util
 
 public class myRandomCardDeck {
     Random rand = new Random(); //Náhodné generování
+    String[] cardDeck = { //Balíček karet
+        "club-A", "club-2", "club-3", "club-4", "club-5", "club-6", "club-7", "club-8", "club-9", "club-10", "club-J", "club-Q", "club-K", //První blaíček
+        "dia-A", "dia-2", "dia-3", "dia-4", "dia-5", "dia-6", "dia-7", "dia-8", "dia-9", "dia-10", "dia-J", "dia-Q", "dia-K",
+        "heart-A", "heart-2", "heart-3", "heart-4", "heart-5", "heart-6", "heart-7", "heart-8", "heart-9", "heart-10", "heart-J", "heart-Q", "heart-K",
+        "spade-A", "spade-2", "spade-3", "spade-4", "spade-5", "spade-6", "spade-7", "spade-8", "spade-9", "spade-10", "spade-J", "spade-Q", "spade-K",
+    };
     //Konstruktor
     public myRandomCardDeck() {
-        String[] cardDeck = { //Balíček karet
-            "cA", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "cJ", "cQ", "cK", //První blaíček
-            "dA", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "d10", "dJ", "dQ", "dK",
-            "hA", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9", "h10", "hJ", "hQ", "hK",
-            "sA", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "sJ", "sQ", "sK",
-            "cA", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "cJ", "cQ", "cK", //Druhý balíček
-            "dA", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "d10", "dJ", "dQ", "dK",
-            "hA", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9", "h10", "hJ", "hQ", "hK",
-            "sA", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "sJ", "sQ", "sK",
-            "cA", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "cJ", "cQ", "cK", //Třetí balíček
-            "dA", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "d10", "dJ", "dQ", "dK",
-            "hA", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9", "h10", "hJ", "hQ", "hK",
-            "sA", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "sJ", "sQ", "sK",
-            "cA", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "cJ", "cQ", "cK", //Čtvrtý balíček
-            "dA", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "d10", "dJ", "dQ", "dK",
-            "hA", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9", "h10", "hJ", "hQ", "hK",
-            "sA", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "sJ", "sQ", "sK"
-        };
         // System.out.println(Arrays.toString(randomizeCards(cardDeck)));
 
     }
 
-    String[] randomizeCards(String[] cardDeck) {
-        for (int i=0; i < cardDeck.length; i++) {
-            int randomIndex = rand.nextInt(cardDeck.length);
-            String temp = cardDeck[randomIndex];
-            cardDeck[randomIndex] = cardDeck[i];
-            cardDeck[i] = temp;
-        }
-
-        return cardDeck;
+    String randomizeCards() {
+        int randomIndex = rand.nextInt(cardDeck.length);
+        String card = cardDeck[randomIndex];
+        return card;
     }
 }
