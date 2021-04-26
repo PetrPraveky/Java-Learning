@@ -9,9 +9,16 @@ import func.*;
 public class myRenderCards extends JPanel implements ActionListener{
     myRenderUI ui = new myRenderUI();
     myFunctionRenderCard funcRenderCard = new myFunctionRenderCard();
+
     Image cardDeck; Image cardBack;
-    myRenderAnimation renderAnimation = new myRenderAnimation();
+    Timer timer;
+
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Zjištění velikosti okna
+
+
+    boolean animationDone = false;
+    int cardNumber = 1;
+    int startingAnimationDelay = 1; int startingAnimationCardVelX = 20; int startingAnimationCardVelY = 20;
 
     //Konsturktor
     public myRenderCards() {
@@ -27,10 +34,8 @@ public class myRenderCards extends JPanel implements ActionListener{
     @Override
     public void paint(Graphics g) {
         // funcRenderCard.myFunctionCardReset();
-
         cardDeck = funcRenderCard.cardDeck; //Vytvoření obrázku pro balíček karet
-        cardBack = funcRenderCard.cardBack; //Vytvoření obrázku pro zadní část karty
-
+        cardBack = funcRenderCard.cardBack;
         super.paint(g);
         Graphics2D g2D = (Graphics2D) g; //Zadání rederu
         //Vykreslení balíčku karet
@@ -50,15 +55,63 @@ public class myRenderCards extends JPanel implements ActionListener{
             funcRenderCard.cardBackPosSize[3], //Velikost textury po ose Y)
             null
             );
-        
     };
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Start")) {
             System.out.println("Started");
-            // funcRenderCard.cardDeck = new ImageIcon("D:/Github/Java-Learning/1/BlackJack/res/.cards/cardStackSmall-back1.png").getImage();
-            
+            timer = new Timer(
+                startingAnimationDelay, 
+                new ActionListener() {
+                    void cardMoveSum() {
+                        if (cardNumber==1||cardNumber==3){
+                            cardMoveHand();
+                        }
+                        else if (cardNumber==2||cardNumber==4) {
+                            cardMoveTable();
+                        }
+                    }
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (animationDone==false) {
+                            cardMoveSum();
+                        } else {
+                            timer.stop();
+                            animationDone=false;
+                        }
+                    }
+                }
+            );
+            timer.start();
+        }
+    }
+    public void cardMoveTable() {
+        if (funcRenderCard.cardBackPosSize[0]<=(int)screenSize.getWidth()/2-cardBack.getWidth(null)/2) {
+            funcRenderCard.cardBackPosSize[0]=(int)screenSize.getWidth()/2-cardBack.getWidth(null)/2;
+            funcRenderCard.cardBackPosSize[0]=(int)screenSize.getHeight()/2-cardBack.getHeight(null);
+            funcRenderCard.myFunctionCardReset();
+            repaint();
+            cardNumber++;
+            return;
+        } else {
+            funcRenderCard.cardBackPosSize[0]=funcRenderCard.cardBackPosSize[0]-startingAnimationCardVelX;
+            funcRenderCard.cardBackPosSize[1]=funcRenderCard.cardBackPosSize[1]+startingAnimationCardVelY/2;
+            repaint();
+        }
+    }
+    public void cardMoveHand() {
+        if (funcRenderCard.cardBackPosSize[0]<=(int)screenSize.getWidth()/2-cardBack.getWidth(null)/2) {
+            funcRenderCard.cardBackPosSize[0]=(int)screenSize.getWidth()/2-cardBack.getWidth(null)/2;
+            funcRenderCard.cardBackPosSize[0]=(int)screenSize.getHeight()-funcRenderCard.cardDeckOffset[1]-cardBack.getHeight(null);
+            funcRenderCard.myFunctionCardReset();
+            repaint();
+            cardNumber++;
+            return;
+        } else {
+            funcRenderCard.cardBackPosSize[0]=funcRenderCard.cardBackPosSize[0]-startingAnimationCardVelX;
+            funcRenderCard.cardBackPosSize[1]=funcRenderCard.cardBackPosSize[1]+startingAnimationCardVelY;
+            repaint();
         }
     }
 }

@@ -6,7 +6,7 @@ public class myFunctionRenderCard {
     public Image cardDeck; public Image cardBack;
     public int[] cardDeckPosSize = new int[4]; public int[] cardBackPosSize = new int[4];
     
-    final int[] cardDeckOffset = { //Hodnota odsazení od kraje
+    public final int[] cardDeckOffset = { //Hodnota odsazení od kraje
         128, //X-ová hodnota
         96 //Y-ová hodnota
     };
@@ -28,11 +28,6 @@ public class myFunctionRenderCard {
         cardBackPosSize[3] = getImageMult(cardBack.getHeight(null), 2); //Velikost textury po ose X
     }
     public void myFunctionCardReset() {
-        cardDeckPosSize[0] = (int)screenSize.getWidth()-cardDeckOffset[0]-getImageMult(cardDeck.getWidth(null), 2); //X Pozice
-        cardDeckPosSize[1] = cardDeckOffset[1]; //Y Pozice
-        cardDeckPosSize[2] = getImageMult(cardDeck.getWidth(null), 2); //Velikost textury po ose X
-        cardDeckPosSize[3] = getImageMult(cardDeck.getHeight(null), 2); //Velikost textury po ose Y
-
         cardBackPosSize[0] = (int)screenSize.getWidth()-cardDeckOffset[0]-getImageMult(cardDeck.getWidth(null), 2); //X Pozice
         cardBackPosSize[1] = cardDeckOffset[1]; //Y Pozice
         cardBackPosSize[2] = getImageMult(cardBack.getWidth(null), 2); //Velikost textury po ose X
