@@ -21,23 +21,24 @@ public class myRenderCards extends JPanel implements ActionListener{
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Zjištění velikosti okna
 
-    public int screenSizeX = 1920;
-    public int screenSizeY = 1040;
-
     boolean animationDone = false;
     int cardNumber = 1;
     int startingAnimationDelay = 1; 
-    int startingAnimationCardVelX = (int)((funcRenderCard.cardDeckPosSize[0]-((int)screenSize.getWidth()/2-funcRenderCard.cardBack.getWidth(null)))/25); 
-    int startingAnimationCardVelY = (int)((((int)screenSize.getHeight()-funcRenderCard.cardDeckOffset[1]-funcRenderCard.cardBack.getHeight(null)-64)-funcRenderCard.cardDeckPosSize[1])/25);
+    
+    int startingAnimationCardVelX;
+    int startingAnimationCardVelY;
 
     //Konsturktor
     public myRenderCards() {
         try {
             Object obj = parser.parse(new FileReader("D:/Github/Java-Learning/1/BlackJack/src/render/DataRender.json"));
             JSONObject jsonObject = (JSONObject) obj;
-
+            
             Long screenSizeX = (Long)jsonObject.get("screenSizeX");
             Long screenSizeY = (Long)jsonObject.get("screenSizeY");
+
+            startingAnimationCardVelX = (int)((funcRenderCard.cardDeckPosSize[0]-(screenSizeX.intValue()/2-funcRenderCard.cardBack.getWidth(null)))/25); 
+            startingAnimationCardVelY = (int)(((screenSizeY.intValue()-funcRenderCard.cardDeckOffset[1]-funcRenderCard.cardBack.getHeight(null)-64)-funcRenderCard.cardDeckPosSize[1])/25);
 
             this.setPreferredSize(new Dimension(screenSizeX.intValue(), screenSizeY.intValue()));
     
