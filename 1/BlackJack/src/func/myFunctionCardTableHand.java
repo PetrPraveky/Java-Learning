@@ -18,7 +18,7 @@ public class myFunctionCardTableHand {
         cardHand1PosSize[3][0] = funcRednerCard.getImageMult(funcRednerCard.cardBack.getHeight(null), 2);
     }
     public void NewHandCard (int posX, int posY) {
-        cardHand1PosSize[1][cardNumberHand1-1] = posY-96;
+        cardHand1PosSize[1][cardNumberHand1-1] = posY-64;
         cardArrayHand1[cardNumberHand1-1] = "D:/Github/Java-Learning/1/BlackJack/res/.cards/symbols/"+randomCardDeck.randomizeCards()+".png";
         
         if (cardNumberHand1==1) {

@@ -3,6 +3,9 @@ package render;
 import java.awt.*; //Přidání modulu awt
 import javax.swing.*; //Přidání mudlu swing
 import java.awt.event.*;
+import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+import java.io.FileReader;
 // import java.util.Arrays;
 import func.*;
 //Hlavní třída
@@ -11,24 +14,43 @@ public class myRenderCards extends JPanel implements ActionListener{
     myFunctionRenderCard funcRenderCard = new myFunctionRenderCard();
     myFunctionCardTableHand funcHandTableCard = new myFunctionCardTableHand();
 
+    JSONParser parser = new JSONParser();
+
     Image cardDeck; Image cardBack;
     Timer timer;
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //Zjištění velikosti okna
 
+    public int screenSizeX = 1920;
+    public int screenSizeY = 1040;
 
     boolean animationDone = false;
     int cardNumber = 1;
-    int startingAnimationDelay = 1; int startingAnimationCardVelX = 20; int startingAnimationCardVelY = 20;
+    int startingAnimationDelay = 1; 
+    int startingAnimationCardVelX = (int)((funcRenderCard.cardDeckPosSize[0]-((int)screenSize.getWidth()/2-funcRenderCard.cardBack.getWidth(null)))/25); 
+    int startingAnimationCardVelY = (int)((((int)screenSize.getHeight()-funcRenderCard.cardDeckOffset[1]-funcRenderCard.cardBack.getHeight(null)-64)-funcRenderCard.cardDeckPosSize[1])/25);
 
     //Konsturktor
     public myRenderCards() {
-        this.setLayout(new FlowLayout());
+        try {
+            Object obj = parser.parse(new FileReader("D:/Github/Java-Learning/1/BlackJack/src/render/DataRender.json"));
+            JSONObject jsonObject = (JSONObject) obj;
 
-        this.add(ui);
-        ui.startButton.addActionListener(this);
+            Long screenSizeX = (Long)jsonObject.get("screenSizeX");
+            Long screenSizeY = (Long)jsonObject.get("screenSizeY");
 
-        this.setBackground(Color.black);
+            this.setPreferredSize(new Dimension(screenSizeX.intValue(), screenSizeY.intValue()));
+    
+            this.setLayout(new FlowLayout());
+    
+            this.add(ui);
+            ui.startButton.addActionListener(this);
+    
+            this.setBackground(Color.black);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
     //Funkce pro render
     @Override
@@ -106,7 +128,7 @@ public class myRenderCards extends JPanel implements ActionListener{
     }
     //Animace karet
     public void cardMoveTable() {
-        if (funcRenderCard.cardBackPosSize[0]<=(int)screenSize.getWidth()/2-cardBack.getWidth(null)/2+20) {
+        if (funcRenderCard.cardBackPosSize[0]<=(int)screenSize.getWidth()/2-cardBack.getWidth(null)) {
             funcRenderCard.cardBackPosSize[0]=(int)screenSize.getWidth()/2-cardBack.getWidth(null)/2;
             funcRenderCard.cardBackPosSize[0]=(int)screenSize.getHeight()/2-cardBack.getHeight(null);
             funcRenderCard.myFunctionCardReset();
@@ -116,14 +138,13 @@ public class myRenderCards extends JPanel implements ActionListener{
             return;
         } else {
             funcRenderCard.cardBackPosSize[0]=funcRenderCard.cardBackPosSize[0]-startingAnimationCardVelX;
-            funcRenderCard.cardBackPosSize[1]=funcRenderCard.cardBackPosSize[1]+startingAnimationCardVelY/4;
             repaint();
         }
     }
     public void cardMoveHand() {
         if (funcRenderCard.cardBackPosSize[0]<=(int)screenSize.getWidth()/2-cardBack.getWidth(null)) {
             funcRenderCard.cardBackPosSize[0]=(int)screenSize.getWidth()/2-cardBack.getWidth(null);
-            funcRenderCard.cardBackPosSize[0]=(int)screenSize.getHeight()-funcRenderCard.cardDeckOffset[1]-cardBack.getHeight(null);
+            funcRenderCard.cardBackPosSize[0]=(int)screenSize.getHeight()-funcRenderCard.cardDeckOffset[1]-cardBack.getHeight(null)-64;
             funcRenderCard.myFunctionCardReset();
 
             funcHandTableCard.cardNumberHand1++;
